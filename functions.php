@@ -16,5 +16,6 @@
 		created_on DATETIME,
 		updated_on DATETIME
 	)";
+	
 
 ?>

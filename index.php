@@ -9,4 +9,5 @@ $tableArticles = mysqli_query($link, $articles) or die("Error" . mysqli_error($l
 $tableUsers = mysqli_query($link, $users) or die("Error" . mysqli_error($link));
 
 mysqli_close($link);
+include "form.php";
 ?>
