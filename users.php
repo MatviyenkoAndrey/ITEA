@@ -1,33 +1,13 @@
 <?php 
-if (isset($_POST['name'])) {
-	$name = $_POST['name'];
-	if (!preg_match("/^[a-яA-Яa-zA-Z ]*$/",$name)){
-		trigger_error("Invalid name");
-		$inputErr = "Please check your data";
-	}
-}
-
-if (isset($_POST['surname'])) {
-	$surname = $_POST['surname'];
-	if (!preg_match("/^[a-яA-Яa-zA-Z ]*$/",$surname)){
-		trigger_error("Invalid surname");
-		$inputErr = "Please check your data";
-	}
-}
-if (isset($_POST['email'])) {
-	$email = $_POST['email'];
-	if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-		trigger_error("Invalid email");
-		$inputErr = "Please check your data";
-	}
-}
-
-if(!$inputErr){
-echo "User: $name $surname - $email";
-} else {
-	echo $inputErr;
-}
-
+	require_once 'connection.php';
+	$link = mysqli_connect($host, $user, $password, $database) or die("Error" . mysqli_error($link));
+	$usersList = mysqli_query($link, "SELECT * FROM users");
+	while ($row = $usersList->fetch_assoc()) {
+        print_r($row);
+     	echo "<br>";
+    }
+	mysqli_close($link);
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,6 +17,6 @@ echo "User: $name $surname - $email";
 </head>
 <body>
 	<br>
-	<a href="index.php">Home</a>
+	<a href="index.php">Add new User</a>
 </body>
 </html>
