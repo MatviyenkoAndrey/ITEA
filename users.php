@@ -1,18 +1,15 @@
 <?php 
 	require_once 'connection.php';
 	$link = mysqli_connect($host, $user, $password, $database) or die("Error" . mysqli_error($link));
+
+    
+	// if (isset($_POST['id'])) {
 	
-	if (isset($_GET['red_id'])) {
-      
-      header('Location: edit.php');
-      exit();
-    }
+ //    	$sql = mysqli_query($link, "UPDATE users SET username = {$_POST['name']}, surname = {$_POST['surname']}, email = {$_POST['email']} WHERE id = {$_POST['id']}");
+	
+	// }
     $usersList = mysqli_query($link, "SELECT * FROM users");
-	// while ($row = mysqli_fetch_array($usersList)) {
- //        print_r($row);
- //     	echo "<br>";
- //    }
-	// mysqli_close($link);
+    
 	
 ?>
 <!DOCTYPE html>
@@ -42,7 +39,8 @@
         	<td>{$row['password']}</td>
         	<td>{$row['created_on']}</td>
         	<td>{$row['updated_on']}</td>
-        	<td><a href='?red_id={$row['id']}'>Edit</a></td>
+        	<td><a href='edit.php?red_id={$row['id']}'>Edit</a></td>
+        	<td><a href='delete.php?del_id={$row['id']}'>Delete</a></td>
         	</tr>";
      		}
      		mysqli_close($link);
